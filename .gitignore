@@ -1,0 +1,9 @@
+__pycache__/
+.venv/
+*.png
+*.jpg
+*.jpeg
+*.webp
+out/
+*.egg-info/
+dist/

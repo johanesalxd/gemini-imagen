@@ -87,13 +87,13 @@ def generate(
         image_size = None
 
     image_config_kwargs: dict = {
-        "number_of_images": count,
         "aspect_ratio": aspect_ratio,
     }
     if image_size:
         image_config_kwargs["image_size"] = image_size
 
     config = types.GenerateContentConfig(
+        candidate_count=count,
         image_config=types.ImageConfig(**image_config_kwargs),
     )
 

@@ -10,7 +10,7 @@ Usage:
     uv run imagen.py generate "prompt" --json
 
 Env:
-    GOOGLE_API_KEY — Gemini API key (or set in ~/clawd/.secrets/vader.env)
+    GOOGLE_API_KEY — Gemini API key (required)
 """
 
 import os
@@ -32,17 +32,10 @@ DEFAULT_MODEL = "gemini-3.1-flash-image-preview"  # Nano Banana 2
 
 def get_api_key() -> str:
     key = os.environ.get("GOOGLE_API_KEY")
-    if key:
-        return key
-    vader_env = os.path.expanduser("~/clawd/.secrets/vader.env")
-    if os.path.exists(vader_env):
-        with open(vader_env) as f:
-            for line in f:
-                line = line.strip()
-                if line.startswith("GOOGLE_API_KEY="):
-                    return line.split("=", 1)[1].strip().strip('"')
-    print("ERROR: GOOGLE_API_KEY not found in env or vader.env", file=sys.stderr)
-    sys.exit(1)
+    if not key:
+        print("ERROR: GOOGLE_API_KEY environment variable not set", file=sys.stderr)
+        sys.exit(1)
+    return key
 
 
 def resolve_model(model_str: str) -> str:

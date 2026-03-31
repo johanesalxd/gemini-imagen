@@ -50,3 +50,4 @@ uv run imagen.py generate "prompt" --out /tmp/images --json
 
 - **Output is JPEG** (API returns `image/jpeg`). Extension set dynamically from mime type.
 - **Latency:** Nano Banana 2 ~10-20s. Nano Banana Pro ~30-60s.
+- **`candidate_count` not `number_of_images`:** google-genai SDK (v1.69.0+) rejects `number_of_images` in `ImageConfig`. Use `candidate_count` on `GenerateContentConfig` to request multiple images.

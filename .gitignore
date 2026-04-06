@@ -7,3 +7,11 @@ __pycache__/
 out/
 *.egg-info/
 dist/
+
+# Local tool and shell files
+.opencode/
+.python-version
+.mise.toml
+
+# Local OS files
+.DS_Store
